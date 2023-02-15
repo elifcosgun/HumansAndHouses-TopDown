@@ -7,12 +7,6 @@ public class RotationMovement : MonoBehaviour
 {
     Vector3 lookPosition;
     Vector3 lookDirection;
-    Rigidbody rb;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
 
     private void Update()
     {
@@ -26,15 +20,12 @@ public class RotationMovement : MonoBehaviour
         }
 
         lookDirection = lookPosition - transform.position;
-        //lookDirection.y = 0;
-        
-        //transform.LookAt(transform.position + lookDir, Vector3.up);
     }
 
     private void FixedUpdate()
     {
         Vector3 lookDirY = Vector3.zero;
         lookDirY.y = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg;
-        rb.rotation = Quaternion.Euler(lookDirY);
+        transform.rotation = Quaternion.Euler(lookDirY);
     }
 }
