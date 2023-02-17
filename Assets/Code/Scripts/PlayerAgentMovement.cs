@@ -32,7 +32,6 @@ public class PlayerAgentMovement : MonoBehaviour
 
         if (Mathf.Abs(input.y) >= 0.01f || Mathf.Abs(input.x) >= 0.01f)
         {
-
             Move(input, isRun);
         }
     }
@@ -46,7 +45,7 @@ public class PlayerAgentMovement : MonoBehaviour
             navMeshAgent.speed = RunSpeed;
         else
             navMeshAgent.speed = normalSpeed;
-        
+
 
         animationSystemBase.SetMove(AnimationKey.Xaxis, input.x, AnimationKey.Yaxis, input.y, isRun);
     }

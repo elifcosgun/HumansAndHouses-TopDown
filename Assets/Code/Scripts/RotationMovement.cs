@@ -29,6 +29,12 @@ public class RotationMovement : MonoBehaviour
         Vector3 lookDirY = Vector3.zero;
         lookDirY.y = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg;
         //transform.rotation = Quaternion.Euler(lookDirY);
+        
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(lookDirY), rotationSpeed * Time.deltaTime);
+
+        if (Mathf.Abs(transform.rotation.y - lookDirY.y) > 0.01f)
+        {
+            //TODO: rotate animation
+        }
     }
 }
