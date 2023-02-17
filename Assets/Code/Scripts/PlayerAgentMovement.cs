@@ -5,8 +5,12 @@ using UnityEngine.AI;
 
 public class PlayerAgentMovement : MonoBehaviour
 {
+    [SerializeField] private float normalSpeed = 3.5f;
+    [SerializeField] private float RunSpeed = 7f;
+
     private NavMeshAgent navMeshAgent;
     private AnimationSystemBase animationSystemBase;
+
     private bool isMoving { get; set; }
 
     private void Awake()
@@ -18,7 +22,7 @@ public class PlayerAgentMovement : MonoBehaviour
     private void Update()
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        bool isRun = Input.GetKeyDown(KeyCode.LeftShift);
+        bool isRun = Input.GetKey(KeyCode.LeftShift);
 
         if (input.magnitude <= 0)
         {
@@ -37,6 +41,12 @@ public class PlayerAgentMovement : MonoBehaviour
     {
         Vector3 destination = transform.position + Vector3.right * input.x + Vector3.forward * input.y;
         navMeshAgent.destination = destination;
+
+        if (isRun)
+            navMeshAgent.speed = RunSpeed;
+        else
+            navMeshAgent.speed = normalSpeed;
+        
 
         animationSystemBase.SetMove(AnimationKey.Xaxis, input.x, AnimationKey.Yaxis, input.y, isRun);
     }

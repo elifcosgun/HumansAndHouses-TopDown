@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class RotationMovement : MonoBehaviour
 {
+    [SerializeField] float rotationSpeed = 4f;
+
     Vector3 lookPosition;
     Vector3 lookDirection;
 
@@ -26,6 +28,7 @@ public class RotationMovement : MonoBehaviour
     {
         Vector3 lookDirY = Vector3.zero;
         lookDirY.y = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(lookDirY);
+        //transform.rotation = Quaternion.Euler(lookDirY);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(lookDirY), rotationSpeed * Time.deltaTime);
     }
 }

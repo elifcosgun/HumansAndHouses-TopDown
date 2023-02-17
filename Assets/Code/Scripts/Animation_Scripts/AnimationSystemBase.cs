@@ -63,9 +63,9 @@ public class AnimationSystemBase : MonoBehaviour
         animator.SetFloat(keyY, valueY);
 
         if (isRun)
-        {
-            animator.SetFloat(AnimationKey.WalkBlend, +0.1f);
-        }
+            animator.SetFloat(AnimationKey.WalkBlend, 1f);
+        else
+            animator.SetFloat(AnimationKey.WalkBlend, 0f);
     }
 
     //public virtual void SkillAnimation(string key, AnimationClip animationClip = null)
