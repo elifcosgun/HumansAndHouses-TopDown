@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class RotationMovement : MonoBehaviour
+public class PlayerRotationMovement : MonoBehaviour
 {
     [SerializeField] float rotationSpeed = 4f;
 

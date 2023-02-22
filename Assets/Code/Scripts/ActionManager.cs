@@ -15,6 +15,10 @@ public class ActionManager : MonoBehaviour
     //public static Action OnPrimaryAbilityUsed;
     //public static void Fire_OnPrimaryAbilityUsed() { }
 
+    public static Action<CharacterStates> OnCharacterStateChanged;
+    public static void Fire_OnCharacterStateChanged(CharacterStates character) { }
+
+
     public void OnDestroy()
     {
         FieldInfo[] fieldInfos = this.GetType().GetFields();

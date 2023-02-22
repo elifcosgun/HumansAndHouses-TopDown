@@ -5,12 +5,20 @@ using UnityEngine.Events;
 
 public class AbilityHolder : MonoBehaviour
 {
-    public CharacterStates Owner;
+    public CharacterStates OwnerCurrentCharacterState;
     public BaseAbility Ability;
     public AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
-    public UnityEvent OnTriggerAbility;
+
     
-    private IEnumerator _handleAbilityUsage;
+    private IEnumerator handleAbilityUsage;
+
+    private void Awake()
+    {
+        ActionManager.OnCharacterStateChanged += (CharacterStates characterState) =>
+        {
+            OwnerCurrentCharacterState = characterState;
+        };
+    }
 
     public enum AbilityStates
     {
@@ -26,10 +34,14 @@ public class AbilityHolder : MonoBehaviour
 
         if (!CharacterIsOnAllowedState())
             return;
+
+        //handleAbilityUsage = 
     }
 
     public bool CharacterIsOnAllowedState()
     {
-        return true; //Ability.AllowedCharacterStates.Contains(Owner.CurrentCharacterState)
+        return Ability.AllowedCharacterStates.Contains(OwnerCurrentCharacterState);
     }
+
+    
 }
