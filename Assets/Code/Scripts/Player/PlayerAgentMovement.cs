@@ -9,20 +9,18 @@ public class PlayerAgentMovement : MonoBehaviour
     [SerializeField] private float RunSpeed = 7f;
 
     private NavMeshAgent navMeshAgent;
-    private AnimationSystemBase animationSystemBase;
 
-    private bool isMoving { get; set; }
+    private bool isRun = false;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        animationSystemBase = GetComponentInChildren<AnimationSystemBase>();
     }
 
     private void Update()
     {
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        bool isRun = Input.GetKey(KeyCode.LeftShift);
+        isRun = Input.GetKey(KeyCode.LeftShift);
 
         if (input.magnitude <= 0)
         {
@@ -32,11 +30,11 @@ public class PlayerAgentMovement : MonoBehaviour
 
         if (Mathf.Abs(input.y) >= 0.01f || Mathf.Abs(input.x) >= 0.01f)
         {
-            Move(input, isRun);
+            Move(input);
         }
     }
 
-    private void Move(Vector2 input, bool isRun)
+    private void Move(Vector2 input)
     {
         Vector3 destination = transform.position + Vector3.right * input.x + Vector3.forward * input.y;
         navMeshAgent.destination = destination;
@@ -46,12 +44,11 @@ public class PlayerAgentMovement : MonoBehaviour
         else
             navMeshAgent.speed = normalSpeed;
 
-
-        animationSystemBase.SetMove(AnimationKey.Xaxis, input.x, AnimationKey.Yaxis, input.y, isRun);
+        ActionManager.Fire_OnanimationSetMove(input.x, input.y, isRun);
     }
 
     private void Stop()
     {
-        animationSystemBase.SetMove(AnimationKey.Xaxis, 0f, AnimationKey.Yaxis, 0f, AnimationKey.WalkBlend, 0f);
+        ActionManager.Fire_OnanimationSetMove(0f, 0f, isRun);
     }
 }

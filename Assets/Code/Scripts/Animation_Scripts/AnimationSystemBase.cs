@@ -7,6 +7,7 @@ using UnityEngine;
 public class AnimationSystemBase : MonoBehaviour
 {
     [HideInInspector] private Animator animator;
+    // example of list structs //public AnimationKey[] animationKeys;
     //[SerializeField] private float attackSpeed;
 
     //private CharacterBase characterBase;
@@ -14,6 +15,7 @@ public class AnimationSystemBase : MonoBehaviour
     protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        ActionManager.OnAnimationSetMove += SetMove;
     }
 
     protected virtual void Start()
@@ -35,32 +37,13 @@ public class AnimationSystemBase : MonoBehaviour
         animator.SetTrigger(key);
     }
 
-    public virtual void SetMove(string keyX, float valueX, string keyY, float valueY)
+    public virtual void SetMove(float valueX, float valueY, bool isRun)
     {
         if (!animator)
             return;
 
-        animator.SetFloat(keyX, valueX);
-        animator.SetFloat(keyY, valueY);
-    }
-
-    public virtual void SetMove(string keyX, float valueX, string keyY, float valueY, string keyZ, float valueZ)
-    {
-        if (!animator)
-            return;
-
-        animator.SetFloat(keyX, valueX);
-        animator.SetFloat(keyY, valueY);
-        animator.SetFloat(keyZ, valueZ);
-    }
-
-    public virtual void SetMove(string keyX, float valueX, string keyY, float valueY, bool isRun)
-    {
-        if (!animator)
-            return;
-
-        animator.SetFloat(keyX, valueX);
-        animator.SetFloat(keyY, valueY);
+        animator.SetFloat(AnimationKey.Xaxis, valueX);
+        animator.SetFloat(AnimationKey.Yaxis, valueY);
 
         if (isRun)
             animator.SetFloat(AnimationKey.WalkBlend, 1f);
@@ -174,10 +157,11 @@ public class AnimationSystemBase : MonoBehaviour
     //}
 }
 
+[System.Serializable]
 public struct AnimationKey
 {
     public const string WalkBlend = "WalkBlend";
     public const string Xaxis = "Xaxis";
     public const string Yaxis = "Yaxis";
-    //public const string IsRun = "IsRun";
+
 }

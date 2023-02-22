@@ -2140,6 +2140,8 @@ GameObject:
   - component: {fileID: 1290120148}
   - component: {fileID: 1290120147}
   - component: {fileID: 1290120150}
+  - component: {fileID: 1290120153}
+  - component: {fileID: 1290120154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2182,7 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSpeed: 3.5
-  RunSpeed: 5
+  RunSpeed: 7
 --- !u!114 &1290120148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,6 +2255,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1290120153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290120145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d44eb1fa123315489c88a7c2c5d8217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1290120154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290120145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3213eb6f625ca4aa7527f838d6dff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAgentMovement: {fileID: 0}
+  currentCharacterState: 0
+  PlayerSlotAbilities:
+  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
+  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
+  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
+  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
+  LeftMouseAbility: {fileID: 11400000, guid: e12c98e616cec06449f1a9fca821a65b, type: 2}
+  RightMouseAbility: {fileID: 11400000, guid: e400a28ff582c064c899fbf695bec5f1, type: 2}
 --- !u!114 &1332779140
 MonoBehaviour:
   m_ObjectHideFlags: 0

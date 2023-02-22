@@ -10,13 +10,22 @@ public class ActionManager : MonoBehaviour
     //public static void Fire_OnEnemyKilled(GameObject obj) { OnEnemyKilled?.Invoke(obj); }
 
     //public static Action<float, float> OnAbilityUsed;
+
     //public static void Fire_OnAbilityUsed(float activeTime, float cooldownTime) { OnAbilityUsed?.Invoke(activeTime, cooldownTime); }
 
-    //public static Action OnPrimaryAbilityUsed;
-    //public static void Fire_OnPrimaryAbilityUsed() { }
 
     public static Action<CharacterStates> OnCharacterStateChanged;
-    public static void Fire_OnCharacterStateChanged(CharacterStates character) { }
+    public static void Fire_OnCharacterStateChanged(CharacterStates characterState) { OnCharacterStateChanged?.Invoke(characterState); }
+
+
+    public static Action<BaseAbility> OnAbilityTrigger;
+    public static void Fire_OnAbilityTrigger(BaseAbility baseAbility) { OnAbilityTrigger?.Invoke(baseAbility); }
+
+
+    //Animations
+
+    public static Action<float, float, bool> OnAnimationSetMove;
+    public static void Fire_OnanimationSetMove(float valueX, float valueY, bool isRun) { OnAnimationSetMove?.Invoke(valueX, valueY, isRun); }
 
 
     public void OnDestroy()

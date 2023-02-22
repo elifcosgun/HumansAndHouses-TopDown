@@ -5,19 +5,26 @@ using UnityEngine;
 public abstract class BaseAbility : ScriptableObject
 {
     [Header("Cooldown And Casting Time")]
-    public bool HasCooldown = true;
+    public AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
+
     public float Cooldown = 1f;
     public float CastingTime = 0f;
+
 
     [Header("Allowed States")]
     public List<CharacterStates> AllowedCharacterStates = new
         List<CharacterStates>() { CharacterStates.Idle };
 
-    //public virtual void OnAbilityUpdate()
+
+    public virtual void Activate()
+    {
+
+    }
 }
 
-public enum CharacterStates
+public enum AbilityStates
 {
-    Idle,
-    Walking
+    ReadyToUse = 0,
+    Casting = 1,
+    Cooldown = 2
 }
