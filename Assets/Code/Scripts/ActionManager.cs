@@ -24,8 +24,12 @@ public class ActionManager : MonoBehaviour
 
     //Animations
 
-    public static Action<float, float, bool> OnAnimationSetMove;
-    public static void Fire_OnanimationSetMove(float valueX, float valueY, bool isRun) { OnAnimationSetMove?.Invoke(valueX, valueY, isRun); }
+    public static Action<float, float> OnAnimationSetMove;
+    public static void Fire_OnanimationSetMove(float valueX, float valueY) { OnAnimationSetMove?.Invoke(valueX, valueY); }
+
+
+    public static Action<float> OnAnimationSetRun;
+    public static void Fire_OnAnimationSetRun(float valueRun) { OnAnimationSetRun?.Invoke(valueRun); }
 
 
     public void OnDestroy()

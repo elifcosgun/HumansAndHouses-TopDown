@@ -2183,6 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921c9920de054c84188f87fd16c3ef7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 3.5
   normalSpeed: 3.5
   RunSpeed: 7
 --- !u!114 &1290120148
@@ -2279,15 +2280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3213eb6f625ca4aa7527f838d6dff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAgentMovement: {fileID: 0}
   currentCharacterState: 0
   PlayerSlotAbilities:
+  - {fileID: 11400000, guid: e12c98e616cec06449f1a9fca821a65b, type: 2}
+  - {fileID: 11400000, guid: e400a28ff582c064c899fbf695bec5f1, type: 2}
   - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
   - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
-  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
-  - {fileID: 11400000, guid: ccd93e9851d54544d9e44b15f53ee16c, type: 2}
-  LeftMouseAbility: {fileID: 11400000, guid: e12c98e616cec06449f1a9fca821a65b, type: 2}
-  RightMouseAbility: {fileID: 11400000, guid: e400a28ff582c064c899fbf695bec5f1, type: 2}
 --- !u!114 &1332779140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3416,6 +3414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921c9920de054c84188f87fd16c3ef7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 3.5
   normalSpeed: 3.5
   RunSpeed: 5
 --- !u!95 &919132148196581260

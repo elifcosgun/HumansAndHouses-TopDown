@@ -16,6 +16,7 @@ public class AnimationSystemBase : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         ActionManager.OnAnimationSetMove += SetMove;
+        ActionManager.OnAnimationSetRun += SetRun;
     }
 
     protected virtual void Start()
@@ -37,18 +38,21 @@ public class AnimationSystemBase : MonoBehaviour
         animator.SetTrigger(key);
     }
 
-    public virtual void SetMove(float valueX, float valueY, bool isRun)
+    public virtual void SetMove(float valueX, float valueY)
     {
         if (!animator)
             return;
 
         animator.SetFloat(AnimationKey.Xaxis, valueX);
         animator.SetFloat(AnimationKey.Yaxis, valueY);
+    }
 
-        if (isRun)
-            animator.SetFloat(AnimationKey.WalkBlend, 1f);
-        else
-            animator.SetFloat(AnimationKey.WalkBlend, 0f);
+    public virtual void SetRun(float valueRun)
+    {
+        if (!animator)
+            return;
+
+        animator.SetFloat(AnimationKey.WalkBlend, valueRun);
     }
 
     //public virtual void SkillAnimation(string key, AnimationClip animationClip = null)
