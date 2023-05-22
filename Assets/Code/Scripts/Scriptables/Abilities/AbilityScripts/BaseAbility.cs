@@ -5,10 +5,13 @@ using UnityEngine;
 public abstract class BaseAbility : ScriptableObject
 {
     [Header("Cooldown And Casting Time")]
+    public Sprite AbilityImage;
+
     public AbilityStates CurrentAbilityState = AbilityStates.ReadyToUse;
 
     public float Cooldown = 1f;
     public float CastingTime = 0f;
+
 
 
     [Header("Allowed States")]

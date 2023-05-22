@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64811bd1daa37414c956388b461233f7, type: 3}
-  m_Name: NormalAttack
+  m_Script: {fileID: 11500000, guid: 187ca66fe082c5c418c9f999ff5a37e5, type: 3}
+  m_Name: FireDash
   m_EditorClassIdentifier: 
-  AbilityImage: {fileID: 21300000, guid: 0048f1f23318ec04e8faea149c7e7675, type: 3}
+  AbilityImage: {fileID: 21300000, guid: a13cbbb18e6c06b428cc11f5e39e6069, type: 3}
   CurrentAbilityState: 0
   Cooldown: 1
   CastingTime: 0

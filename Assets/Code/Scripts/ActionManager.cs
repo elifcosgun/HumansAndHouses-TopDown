@@ -13,9 +13,24 @@ public class ActionManager : MonoBehaviour
 
     //public static void Fire_OnAbilityUsed(float activeTime, float cooldownTime) { OnAbilityUsed?.Invoke(activeTime, cooldownTime); }
 
+    public static Action<List<BaseAbility>> OnAbilityBroadCast;
+    public static void Fire_OnAbilityBroadCast(List<BaseAbility> baseAbilities) { OnAbilityBroadCast?.Invoke(baseAbilities); }
+
 
     public static Action<CharacterStates> OnCharacterStateChanged;
     public static void Fire_OnCharacterStateChanged(CharacterStates characterState) { OnCharacterStateChanged?.Invoke(characterState); }
+
+
+    public static Action<int, BaseAbility> OnPrimaryAbilityChanged;
+    public static void Fire_OnPrimaryAbilityChanged(int mainAbilityIndex, BaseAbility ability) { OnPrimaryAbilityChanged?.Invoke(mainAbilityIndex, ability); }
+
+
+    public static Action<int> OnPrimaryAbilityNulled;
+    public static void Fire_OnPrimaryAbilityNulled(int nullifiedAbilityIndex) { OnPrimaryAbilityNulled?.Invoke(nullifiedAbilityIndex); }
+
+
+    public static Action<int> OnPrimaryHandChange;
+    public static void Fire_OnPrimaryHandChange(int handIndex) { OnPrimaryHandChange?.Invoke(handIndex); }
 
 
     public static Action<BaseAbility> OnAbilityTrigger;

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187ca66fe082c5c418c9f999ff5a37e5, type: 3}
   m_Name: Dash1
   m_EditorClassIdentifier: 
-  HasCooldown: 1
+  AbilityImage: {fileID: 21300000, guid: 8da251f8994120e479421d033c6e62b1, type: 3}
+  CurrentAbilityState: 0
   Cooldown: 1
   CastingTime: 0
   AllowedCharacterStates: 00000000

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 187ca66fe082c5c418c9f999ff5a37e5, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
+  AbilityImage: {fileID: 21300000, guid: a6757ebef042d244bbdee268ba8d13a5, type: 3}
   CurrentAbilityState: 0
   Cooldown: 1
   CastingTime: 0.5

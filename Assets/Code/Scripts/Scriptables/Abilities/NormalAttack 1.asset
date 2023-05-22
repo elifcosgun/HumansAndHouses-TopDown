@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64811bd1daa37414c956388b461233f7, type: 3}
-  m_Name: NormalAttack
+  m_Name: NormalAttack 1
   m_EditorClassIdentifier: 
-  AbilityImage: {fileID: 21300000, guid: 0048f1f23318ec04e8faea149c7e7675, type: 3}
+  AbilityImage: {fileID: 21300000, guid: 472140bef5c09cd41a9c7208febafcef, type: 3}
   CurrentAbilityState: 0
   Cooldown: 1
   CastingTime: 0
