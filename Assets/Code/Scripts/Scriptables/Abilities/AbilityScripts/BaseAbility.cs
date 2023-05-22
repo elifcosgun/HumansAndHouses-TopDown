@@ -13,7 +13,6 @@ public abstract class BaseAbility : ScriptableObject
     public float CastingTime = 0f;
 
 
-
     [Header("Allowed States")]
     public List<CharacterStates> AllowedCharacterStates = new
         List<CharacterStates>() { CharacterStates.Idle };

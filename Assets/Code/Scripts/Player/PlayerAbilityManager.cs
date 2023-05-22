@@ -56,13 +56,28 @@ public class PlayerAbilityManager : MonoBehaviour
 
     private void PrimaryAbilitySetter(BaseAbility newPrimaryAbility)
     {
-        var OldAbilitySlot = PrimaryAbilities.Find(t => t == newPrimaryAbility);
-        //if (OldAbilitySlot != null)
-        //{
-        //    ActionManager.Fire_OnPrimaryAbilityNulled(PrimaryAbilities.FindIndex(t => t == newPrimaryAbility));
-        //}         // why I added this I dunno change if you see and understand
+        foreach (var ability in PrimaryAbilities)
+        {
+            if (ability == newPrimaryAbility)
+            {
+                SwapPrimaryAbilites();
+                return;
+            }
+        }
+
         PrimaryAbilities[handIndex] = newPrimaryAbility;
         ActionManager.Fire_OnPrimaryAbilityChanged(handIndex, newPrimaryAbility);
+    }
+
+    private void SwapPrimaryAbilites()
+    {
+        var temporaryAbility = PrimaryAbilities[0];
+        PrimaryAbilities[0] = PrimaryAbilities[1];
+        PrimaryAbilities[1] = temporaryAbility;
+
+        ActionManager.Fire_OnPrimaryAbilityChanged(0, PrimaryAbilities[0]);
+        ActionManager.Fire_OnPrimaryAbilityChanged(1, PrimaryAbilities[1]);
+
     }
 
     private void PrimaryAbilityNuller(int nulledHandIndex)
@@ -95,14 +110,15 @@ public class PlayerAbilityManager : MonoBehaviour
     }
 
 
-    private void PrimaryToSeconderyHandChanger(InputAction.CallbackContext value)
+    private void PrimaryHandChanger(InputAction.CallbackContext value)
     {
-        handIndex++;
-        if (handIndex == PrimaryAbilities.Count)
-        {
-            handIndex = 0;
-        }
+        handIndex = 0;
+        ActionManager.Fire_OnPrimaryHandChange(handIndex);
+    }
 
+    private void SecondaryHandChanger(InputAction.CallbackContext value)
+    {
+        handIndex = 1;
         ActionManager.Fire_OnPrimaryHandChange(handIndex);
     }
 
@@ -128,7 +144,8 @@ public class PlayerAbilityManager : MonoBehaviour
     {
         input.Player.Enable();
         input.Player.AbilitySelect.performed += ControlAbility;
-        input.Player.PrimaryToSecondaryHand.performed += PrimaryToSeconderyHandChanger;
+        input.Player.PrimaryHand.performed += PrimaryHandChanger;
+        input.Player.SecondaryHand.performed += SecondaryHandChanger;
         input.Player.PrimaryAbilityUse.performed += TriggerPrimaryAbility;
         input.Player.SecondaryAbilityUse.performed += TriggerSecondaryAbility;
     }
@@ -137,7 +154,8 @@ public class PlayerAbilityManager : MonoBehaviour
     {
         input.Player.Disable();
         input.Player.AbilitySelect.performed -= ControlAbility;
-        input.Player.PrimaryToSecondaryHand.performed -= PrimaryToSeconderyHandChanger;
+        input.Player.PrimaryHand.performed -= PrimaryHandChanger;
+        input.Player.SecondaryHand.performed -= SecondaryHandChanger;
         input.Player.PrimaryAbilityUse.performed -= TriggerPrimaryAbility;
         input.Player.SecondaryAbilityUse.performed -= TriggerSecondaryAbility;
     }

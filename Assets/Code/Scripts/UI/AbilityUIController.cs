@@ -19,6 +19,8 @@ public class AbilityUIController : MonoBehaviour
         ActionManager.OnPrimaryAbilityChanged += PrimaryAbilitiesIconChanged;
         ActionManager.OnPrimaryAbilityNulled += PrimaryAbilitiesIconNulled;
         ActionManager.OnPrimaryHandChange += PrimaryHandChanged;
+
+        ActionManager.OnAbilityTrigger += AbilityPercentFill;
     }
 
     private void AbilityUICreator(List<BaseAbility> abilities)
@@ -50,7 +52,7 @@ public class AbilityUIController : MonoBehaviour
 
     private void PrimaryHandsAbilityChanged(int iconIndex)
     {
-
+        // primary and secondary hands skill will have a frame that shows which hand holding that skill
     }
 
     private void PrimaryHandChanged(int handIndex)
@@ -61,5 +63,13 @@ public class AbilityUIController : MonoBehaviour
         }
 
         HandUIs[handIndex].Selected.DOFade(255f, 0.00001f);
+    }
+
+    private void AbilityPercentFill(BaseAbility ability)
+    {
+        float fillTime = ability.CastingTime + ability.Cooldown;
+
+        
+
     }
 }

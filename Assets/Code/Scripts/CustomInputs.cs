@@ -55,9 +55,18 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""PrimaryToSecondaryHand"",
+                    ""name"": ""PrimaryHand"",
                     ""type"": ""Button"",
                     ""id"": ""7a89dbc1-fea9-4582-b3d2-30058920633b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondaryHand"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e5f41dc-2a21-4092-8dcf-334f74111060"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -277,7 +286,7 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PrimaryToSecondaryHand"",
+                    ""action"": ""PrimaryHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -300,6 +309,17 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SecondaryAbilityUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e9c11fc-d17f-4cca-a624-d32c8bca37b3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -829,7 +849,8 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_AbilitySelect = m_Player.FindAction("AbilitySelect", throwIfNotFound: true);
-        m_Player_PrimaryToSecondaryHand = m_Player.FindAction("PrimaryToSecondaryHand", throwIfNotFound: true);
+        m_Player_PrimaryHand = m_Player.FindAction("PrimaryHand", throwIfNotFound: true);
+        m_Player_SecondaryHand = m_Player.FindAction("SecondaryHand", throwIfNotFound: true);
         m_Player_PrimaryAbilityUse = m_Player.FindAction("PrimaryAbilityUse", throwIfNotFound: true);
         m_Player_SecondaryAbilityUse = m_Player.FindAction("SecondaryAbilityUse", throwIfNotFound: true);
         // UI
@@ -906,7 +927,8 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_AbilitySelect;
-    private readonly InputAction m_Player_PrimaryToSecondaryHand;
+    private readonly InputAction m_Player_PrimaryHand;
+    private readonly InputAction m_Player_SecondaryHand;
     private readonly InputAction m_Player_PrimaryAbilityUse;
     private readonly InputAction m_Player_SecondaryAbilityUse;
     public struct PlayerActions
@@ -916,7 +938,8 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @AbilitySelect => m_Wrapper.m_Player_AbilitySelect;
-        public InputAction @PrimaryToSecondaryHand => m_Wrapper.m_Player_PrimaryToSecondaryHand;
+        public InputAction @PrimaryHand => m_Wrapper.m_Player_PrimaryHand;
+        public InputAction @SecondaryHand => m_Wrapper.m_Player_SecondaryHand;
         public InputAction @PrimaryAbilityUse => m_Wrapper.m_Player_PrimaryAbilityUse;
         public InputAction @SecondaryAbilityUse => m_Wrapper.m_Player_SecondaryAbilityUse;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -937,9 +960,12 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @AbilitySelect.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySelect;
                 @AbilitySelect.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySelect;
                 @AbilitySelect.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilitySelect;
-                @PrimaryToSecondaryHand.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryToSecondaryHand;
-                @PrimaryToSecondaryHand.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryToSecondaryHand;
-                @PrimaryToSecondaryHand.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryToSecondaryHand;
+                @PrimaryHand.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryHand;
+                @PrimaryHand.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryHand;
+                @PrimaryHand.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryHand;
+                @SecondaryHand.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryHand;
+                @SecondaryHand.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryHand;
+                @SecondaryHand.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryHand;
                 @PrimaryAbilityUse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAbilityUse;
                 @PrimaryAbilityUse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAbilityUse;
                 @PrimaryAbilityUse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryAbilityUse;
@@ -959,9 +985,12 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
                 @AbilitySelect.started += instance.OnAbilitySelect;
                 @AbilitySelect.performed += instance.OnAbilitySelect;
                 @AbilitySelect.canceled += instance.OnAbilitySelect;
-                @PrimaryToSecondaryHand.started += instance.OnPrimaryToSecondaryHand;
-                @PrimaryToSecondaryHand.performed += instance.OnPrimaryToSecondaryHand;
-                @PrimaryToSecondaryHand.canceled += instance.OnPrimaryToSecondaryHand;
+                @PrimaryHand.started += instance.OnPrimaryHand;
+                @PrimaryHand.performed += instance.OnPrimaryHand;
+                @PrimaryHand.canceled += instance.OnPrimaryHand;
+                @SecondaryHand.started += instance.OnSecondaryHand;
+                @SecondaryHand.performed += instance.OnSecondaryHand;
+                @SecondaryHand.canceled += instance.OnSecondaryHand;
                 @PrimaryAbilityUse.started += instance.OnPrimaryAbilityUse;
                 @PrimaryAbilityUse.performed += instance.OnPrimaryAbilityUse;
                 @PrimaryAbilityUse.canceled += instance.OnPrimaryAbilityUse;
@@ -1082,7 +1111,8 @@ public partial class @CustomInputs : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnAbilitySelect(InputAction.CallbackContext context);
-        void OnPrimaryToSecondaryHand(InputAction.CallbackContext context);
+        void OnPrimaryHand(InputAction.CallbackContext context);
+        void OnSecondaryHand(InputAction.CallbackContext context);
         void OnPrimaryAbilityUse(InputAction.CallbackContext context);
         void OnSecondaryAbilityUse(InputAction.CallbackContext context);
     }

@@ -33,9 +33,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PrimaryToSecondaryHand",
+                    "name": "PrimaryHand",
                     "type": "Button",
                     "id": "7a89dbc1-fea9-4582-b3d2-30058920633b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryHand",
+                    "type": "Button",
+                    "id": "4e5f41dc-2a21-4092-8dcf-334f74111060",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -255,7 +264,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PrimaryToSecondaryHand",
+                    "action": "PrimaryHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -278,6 +287,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SecondaryAbilityUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e9c11fc-d17f-4cca-a624-d32c8bca37b3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
