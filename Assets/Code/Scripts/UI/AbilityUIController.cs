@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Abilities : MonoBehaviour
+public class AbilityUIController : MonoBehaviour
 {
     [SerializeField] private GameObject AbilityUI;
     [SerializeField] private int AbilityXPosPlus = 120;
 
     [SerializeField] private List<AbilityIcon> PrimaryAbilityUIs;
 
+    [SerializeField]  private List<AbilityIcon> HandUIs = new List<AbilityIcon>();
     private List<AbilityIcon> AbilityUIs = new List<AbilityIcon>();
 
     private void Awake()
@@ -17,10 +18,14 @@ public class Abilities : MonoBehaviour
         ActionManager.OnAbilityBroadCast += AbilityUICreator;
         ActionManager.OnPrimaryAbilityChanged += PrimaryAbilitiesIconChanged;
         ActionManager.OnPrimaryAbilityNulled += PrimaryAbilitiesIconNulled;
+        ActionManager.OnPrimaryHandChange += PrimaryHandChanged;
     }
 
     private void AbilityUICreator(List<BaseAbility> abilities)
     {
+        HandUIs[0].Selected.DOFade(255f, 0.000001f);
+        HandUIs[1].Selected.DOFade(0f, 0.000001f);
+
         foreach (BaseAbility ability in abilities)
         {
             var abilityUI = Instantiate(AbilityUI, this.transform);
@@ -29,7 +34,7 @@ public class Abilities : MonoBehaviour
             abilityIcon.Icon.sprite = ability.AbilityImage;
             abilityIcon.Selected.DOFade(0, 0.001f);
             AbilityUIs.Add(abilityIcon);
-            abilityUI.transform.position = transform.position + Vector3.right * AbilityXPosPlus * AbilityUIs.Count;
+            abilityUI.transform.position = transform.position + Vector3.right * AbilityXPosPlus * (AbilityUIs.Count -1);
         }
     }
 
@@ -46,5 +51,15 @@ public class Abilities : MonoBehaviour
     private void PrimaryHandsAbilityChanged(int iconIndex)
     {
 
+    }
+
+    private void PrimaryHandChanged(int handIndex)
+    {
+        foreach (var hand in HandUIs)
+        {
+            hand.Selected.DOFade(0f, 0.00001f);
+        }
+
+        HandUIs[handIndex].Selected.DOFade(255f, 0.00001f);
     }
 }

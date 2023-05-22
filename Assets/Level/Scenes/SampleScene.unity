@@ -2767,8 +2767,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AbilityUI: {fileID: 2523594319634641936, guid: c650c4ddfa3dda44d96bcc0b6f60eb50, type: 3}
-  AbilityXPosPlus: 120
+  AbilityXPosPlus: 100
   PrimaryAbilityUIs:
+  - {fileID: 571783619}
+  - {fileID: 1340726173}
+  HandUIs:
   - {fileID: 571783619}
   - {fileID: 1340726173}
 --- !u!1001 &1506051301
