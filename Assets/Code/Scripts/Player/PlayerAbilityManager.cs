@@ -57,10 +57,10 @@ public class PlayerAbilityManager : MonoBehaviour
     private void PrimaryAbilitySetter(BaseAbility newPrimaryAbility)
     {
         var OldAbilitySlot = PrimaryAbilities.Find(t => t == newPrimaryAbility);
-        if (OldAbilitySlot != null)
-        {
-            ActionManager.Fire_OnPrimaryAbilityNulled(PrimaryAbilities.FindIndex(t => t == newPrimaryAbility));
-        }
+        //if (OldAbilitySlot != null)
+        //{
+        //    ActionManager.Fire_OnPrimaryAbilityNulled(PrimaryAbilities.FindIndex(t => t == newPrimaryAbility));
+        //}         // why I added this I dunno change if you see and understand
         PrimaryAbilities[handIndex] = newPrimaryAbility;
         ActionManager.Fire_OnPrimaryAbilityChanged(handIndex, newPrimaryAbility);
     }
