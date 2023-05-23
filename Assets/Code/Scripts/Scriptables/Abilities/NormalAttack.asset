@@ -15,5 +15,5 @@ MonoBehaviour:
   AbilityImage: {fileID: 21300000, guid: 0048f1f23318ec04e8faea149c7e7675, type: 3}
   CurrentAbilityState: 0
   Cooldown: 1
-  CastingTime: 0
+  CastingTime: 1
   AllowedCharacterStates: 00000000

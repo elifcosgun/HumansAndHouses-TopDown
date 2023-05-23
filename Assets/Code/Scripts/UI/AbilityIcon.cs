@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class AbilityIcon : MonoBehaviour
 {
-    public Image BlackUI, Icon, Selected;
+    public Image BlackFillUI, Icon, Selected;
 }

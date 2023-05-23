@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class AbilityUIController : MonoBehaviour
 {
     [SerializeField] private GameObject AbilityUI;
     [SerializeField] private int AbilityXPosPlus = 120;
-
-    [SerializeField] private List<AbilityIcon> PrimaryAbilityUIs;
 
     [SerializeField]  private List<AbilityIcon> HandUIs = new List<AbilityIcon>();
     private List<AbilityIcon> AbilityUIs = new List<AbilityIcon>();
@@ -42,12 +41,13 @@ public class AbilityUIController : MonoBehaviour
 
     private void PrimaryAbilitiesIconChanged(int iconIndex, BaseAbility ability)
     {
-        PrimaryAbilityUIs[iconIndex].Icon.sprite = ability.AbilityImage;
+        HandUIs[iconIndex].Icon.sprite = ability.AbilityImage;
+        PrimaryAbilityPercentFill(ability);
     }
 
     private void PrimaryAbilitiesIconNulled(int iconIndex)
     {
-        PrimaryAbilityUIs[iconIndex].Icon = null;
+        HandUIs[iconIndex].Icon = null;
     }
 
     private void PrimaryHandsAbilityChanged(int iconIndex)
@@ -69,7 +69,63 @@ public class AbilityUIController : MonoBehaviour
     {
         float fillTime = ability.CastingTime + ability.Cooldown;
 
-        
+        foreach (var abilityImage in AbilityUIs)
+        {
+            if (abilityImage.Icon.sprite == ability.AbilityImage)
+            {
+                var abilityBlackUI = abilityImage.BlackFillUI;
+                abilityBlackUI.fillAmount = 0.0001f;
+                abilityBlackUI.DOFillAmount(1f, fillTime);
+                break;
+            }
+        }
 
+        PrimaryAbilityPercentFill(ability);
+    }
+
+    private Tweener temporaryTween;
+    private Image temporaryImage;
+    private Tweener lastTween;
+    private void PrimaryAbilityPercentFill(BaseAbility ability)
+    {
+        if (temporaryImage != null && temporaryTween != null)
+        {
+            temporaryTween.Kill();
+            temporaryImage.fillAmount = 1f;
+        }
+        
+        Image blackAbilityUI = null;
+        float fillAmount = 1;
+        foreach (var abilityImage in AbilityUIs)
+        {
+            if (abilityImage.Icon.sprite == ability.AbilityImage)
+            {
+                blackAbilityUI = abilityImage.BlackFillUI;
+                fillAmount = blackAbilityUI.fillAmount;
+                break;
+            }
+        }
+
+        foreach (var primaryAbilityUI in HandUIs)
+        {
+            if (primaryAbilityUI.Icon.sprite == ability.AbilityImage)
+            {
+                float fillTime = (ability.CastingTime + ability.Cooldown) * (1 - fillAmount);
+                primaryAbilityUI.BlackFillUI.fillAmount = fillAmount;
+                temporaryTween = primaryAbilityUI.BlackFillUI.DOFillAmount(1f, fillTime);
+
+                //if (lastTween == temporaryTween)
+                //{
+                //    lastTween.Play();
+                //}
+                //else
+                //{
+                //    lastTween.Kill();
+                //}
+
+                //lastTween = temporaryTween;
+                temporaryImage = primaryAbilityUI.BlackFillUI;
+            }
+        }
     }
 }
